@@ -15,24 +15,19 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log('New user connected');
 
-  socket.emit('newEmail', {
-    from: 'person@wherever.com',
-    text: 'Whazzup?',
-    CreatedAt: 12345
-  });
-
-  socket.emit('newMsg', {
-      from: 'Msg user',
-      text: 'Message for you sir . . . ',
-      createdAt: 9876
-  });
-
-  socket.on('createEmail', (newEmail) => {
-    console.log('createEmail', newEmail);
-  });
+  // socket.emit('newMsg', {
+  //     from: 'Msg user',
+  //     text: 'Message for you sir . . . ',
+  //     createdAt: 9876
+  // });
 
   socket.on('createMsg', (msg) => {
     console.log('User sent msg: ', msg);
+    io.emit('newMsg', {
+      from: msg.from,
+      text: msg.text,
+      createdAt: new Date().getTime()
+    });
   });
 
   socket.on('disconnect', (socket) => {
