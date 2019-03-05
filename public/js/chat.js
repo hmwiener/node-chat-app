@@ -9,8 +9,6 @@ function scrollToBottom () {
   var newMessageHeight = newMessage.innerHeight();
   var lastMessageHeight = newMessage.prev().innerHeight();
 
-  //console.log(clientHeight, scrollTop, newMessageHeight, lastMessageHeight, scrollHeight);
-
   if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
     messages.scrollTop(scrollHeight);
   }
@@ -87,7 +85,6 @@ locationButton.on('click', function () {
   if (!navigator.geolocation) {
     return alert('Geolocation not supported by your browser');
   }
-
   locationButton.attr('disabled', 'disabled').text('Sending . . .');
 
   navigator.geolocation.getCurrentPosition(function (position) {

@@ -9,6 +9,7 @@ var generateMessage = (from, text) => {
 };
 
 var generateLocationMessage = (from, lat, long) => {
+  console.log('New Loc Request');
   return{
     from,
     url: `https://www.google.com/maps?q=${lat},${long}`,
